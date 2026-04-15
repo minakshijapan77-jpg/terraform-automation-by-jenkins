@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     parameters {
         choice(
             name: 'ACTION',
@@ -18,32 +19,32 @@ pipeline {
             steps {
                 checkout scmGit(
                     branches: [[name: "*/${params.BRANCH}"]],
-                    extensions: [],
-                    userRemoteConfigs: [[url: 'https://github.com/minakshijapan77-jpg/terraform-automation-by-jenkins.git']]
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/minakshijapan77-jpg/terraform-automation-by-jenkins.git'
+                    ]]
                 )
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                sh 'rm -rf .terraform .terraform.lock.hcl'
             }
         }
 
         stage("terraform init") {
             steps {
-                sh("terraform init -reconfigure")
+                sh "terraform init -reconfigure"
             }
         }
 
         stage("Action") {
             steps {
                 script {
-                    switch (params.ACTION) {
-                        case 'plan':
-                            echo 'Executing Plan...'
-                            sh "terraform plan"
-                            break
-                        case 'apply':
-                            echo 'Executing Apply...'
-                            sh "terraform apply --auto-approve"
-                            break
-                        default:
-                            error 'Unknown action'
+                    if (params.ACTION == 'plan') {
+                        sh "terraform plan"
+                    } else {
+                        sh "terraform apply --auto-approve"
                     }
                 }
             }
