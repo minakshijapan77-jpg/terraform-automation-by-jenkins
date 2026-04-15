@@ -4,6 +4,7 @@ terraform {
     key = "main"
     region = "ca-central-1"
     dynamodb_table = "dyno-1"
+     encrypt        = true
   }
 }
 
