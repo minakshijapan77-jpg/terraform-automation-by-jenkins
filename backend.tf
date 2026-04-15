@@ -3,7 +3,7 @@ terraform {
     bucket = "terraform-statebucketjenkins"
     key = "main"
     region = "ca-central-1"
-    dynamodb_table = "dyno-1"
+    dynamodb_table = "ABC"
      encrypt        = true
   }
 }
