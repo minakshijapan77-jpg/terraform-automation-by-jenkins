@@ -12,6 +12,7 @@ pipeline {
             description: 'Enter the branch name to checkout'
         )
     }
+
     stages {
         stage('Checkout') {
             steps {
