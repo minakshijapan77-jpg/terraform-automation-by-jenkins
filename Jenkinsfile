@@ -18,7 +18,7 @@ pipeline {
                 checkout scmGit(
                     branches: [[name: "*/${params.BRANCH}"]],
                     extensions: [],
-                    userRemoteConfigs: [[url: 'https://github.com/ygminds73/Terraform-Automation.git']]
+                    userRemoteConfigs: [[url: 'https://github.com/minakshijapan77-jpg/terraform-automation-by-jenkins.git']]
                 )
             }
         }
