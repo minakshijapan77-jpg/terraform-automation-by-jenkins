@@ -8,7 +8,7 @@ pipeline {
         )
         string(
             name: 'BRANCH',
-            defaultValue: 'main',
+            defaultValue: 'master',
             description: 'Enter the branch name to checkout'
         )
     }
